@@ -101,6 +101,7 @@ class JobExecution
 
     FileUtils.mkdir_p(artifact_cache_dir)
     @output.write("Executing deploy\n")
+    @output.write("Deploy URL: #{@job.deploy.url}\n") if @job.deploy
 
     commands = [
       "export DEPLOYER=#{@job.user.email.shellescape}",
@@ -109,6 +110,7 @@ class JobExecution
       "export REVISION=#{@reference.shellescape}",
       "export TAG=#{(@job.tag || @job.commit).to_s.shellescape}",
       "export CACHE_DIR=#{artifact_cache_dir}",
+      "export DEPLOY_GROUPS='#{@stage.deploy_groups.map(&:name).join(' ') if @stage}'",
       "cd #{dir}",
       *@job.commands
     ]
