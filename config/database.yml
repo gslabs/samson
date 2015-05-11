@@ -1,0 +1,21 @@
+common: &common
+  adapter: mysql2
+  encoding: utf8
+  username: guidesparkde
+  password: guidesparkde
+  host: localhost
+  port: 3306
+
+development:
+  <<: *common
+  database: gs_deployment_dev
+
+production:
+  <<: *common
+  database: gs_deployment_prod
+  password: <%= ENV['DB_PRODUCTION'] %>
+  reconnect: true
+
+test:
+  <<: *common
+  database: gs_deployment_test
