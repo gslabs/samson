@@ -14,6 +14,7 @@ production:
   <<: *common
   database: gs_deployment_prod
   password: <%= ENV['DB_PRODUCTION'] %>
+  port:     8862
   reconnect: true
 
 test:
