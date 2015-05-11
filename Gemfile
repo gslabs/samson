@@ -5,7 +5,7 @@ gem 'bundler'
 
 gem 'rails', '~> 4.2.0'
 gem 'puma'
-gem 'dotenv-rails', '~> 0.9'
+gem 'dotenv-rails',  :groups => [:development, :test, :production]
 
 gem 'dogstatsd-ruby', '~> 1.4.0', require: 'statsd'
 gem 'goldiloader'
